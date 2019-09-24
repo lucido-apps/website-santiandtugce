@@ -26,21 +26,17 @@ workbox.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "webpack-runtime-bac8adf6ee80d58de102.js"
+    "url": "webpack-runtime-7c256d7c110409736898.js"
   },
   {
-    "url": "app-56ec86f2891437fb2d0b.js"
+    "url": "app-8c32a6b04b65b39ea3ac.js"
   },
   {
     "url": "component---node-modules-gatsby-plugin-offline-app-shell-js-39eaa1264938b2b6bbec.js"
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "242b3f65a7751f425ce4bb46c306874a"
-  },
-  {
-    "url": "page-data/offline-plugin-app-shell-fallback/page-data.json",
-    "revision": "7b6d68ae57d18a186101d7ce91aea57a"
+    "revision": "adb4ee82fdb91e33011cefe4e0574008"
   },
   {
     "url": "manifest.webmanifest",
@@ -63,12 +59,12 @@ const { NavigationRoute } = workbox.routing
 
 const navigationRoute = new NavigationRoute(async ({ event }) => {
   let { pathname } = new URL(event.request.url)
-  pathname = pathname.replace(new RegExp(`^/website-santiandtugce`), ``)
+  pathname = pathname.replace(new RegExp(`^`), ``)
 
   // Check for resources + the app bundle
   // The latter may not exist if the SW is updating to a new version
   const resources = await idbKeyval.get(`resources:${pathname}`)
-  if (!resources || !(await caches.match(`/website-santiandtugce/app-56ec86f2891437fb2d0b.js`))) {
+  if (!resources || !(await caches.match(`/app-8c32a6b04b65b39ea3ac.js`))) {
     return await fetch(event.request)
   }
 
@@ -81,7 +77,7 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
     }
   }
 
-  const offlineShell = `/website-santiandtugce/offline-plugin-app-shell-fallback/index.html`
+  const offlineShell = `/offline-plugin-app-shell-fallback/index.html`
   return await caches.match(offlineShell)
 })
 
